@@ -8,7 +8,7 @@ image:
   repository: muthukannanmuruga/paytm-clone-app
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 72
+  tag: 73
 
 imagePullSecrets: []
 nameOverride: ""
