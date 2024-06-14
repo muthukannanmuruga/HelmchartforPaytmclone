@@ -1,10 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "mychart.fullname" . }}
+  name: "{{ include "mychart.fullname" . }}"
   labels:
     {{- include "mychart.labels" . | nindent 4 }}
 spec:
+  revisionHistoryLimit: 0   # Add this line to set the revision history limit to 0
+  
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
@@ -28,7 +30,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "mychart.serviceAccountName" . }}
-      revisionHistoryLimit: 0 
+     
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
